@@ -1,0 +1,209 @@
+.ts-operator
+{
+    /*     position: relative; */ /* 	text-align: right; */
+    background: none repeat scroll 0 0 #E7FFE7;
+    padding: 5px 0px 5px 0px;
+    width: 300px;
+    border: 1px solid #DDDDDD;
+    border-bottom: 0px;
+}
+
+.ts-title
+{
+    background: none repeat scroll 0 0 #E7FFE7;
+    height: 20px;
+}
+
+.ts-content
+{
+    /*  	background: none repeat scroll 0 0 #E7FFE7; */
+    border: 1px solid #DDDDDD; /*     height: 300px;  */
+    margin-top: 0px;
+    overflow-x: auto; /*     overflow-y: scroll; */
+    width: 300px; /*     position: absolute; */
+}
+
+.ts-text
+{
+}
+.ts-link
+{
+    margin: 2px 2px;
+    padding: 2px 5px 2px 20px;
+    position: relative;
+    text-decoration: none !important;
+    background: url("../Images/Common/ui-bg_glass_85_dfeffc_1x400.png") repeat-x scroll 50% 50% #DFEFFC;
+    border: 1px solid #9FB6CD;
+    color: #2E6E9E;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.ts-link span
+{
+    left: 0.2em;
+    margin: -8px 5px 0 0;
+    position: absolute;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    background-image: url(../Images/Common/ui-icons_6da8d5_256x240.png);
+}
+
+.ui-checkall
+{
+    background-position: -64px -144px;
+}
+.ui-cleanall
+{
+    background-position: -80px -128px;
+}
+ul.ztreesel
+{
+    /*     background: none repeat scroll 0 0 #F0F6E4;     border: 1px solid #617775;     height: 300px;     margin-top: 0px;     overflow-x: auto;     overflow-y: scroll;     width: 200px; */
+}
+/** 系统节点图标*/
+.ztree li button.system_ico_open
+{
+    /*     background: url("../Images/Common/system_open.png") no-repeat scroll 0 0 transparent; */
+    background-image: url("../Images/Common/system_open.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.system_ico_close
+{
+    /*     background: url("../Images/Common/system_close.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/system_close.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.system_ico_docu
+{
+    /* background: url("../Images/Common/system_docu.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/system_docu.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+/** 权限节点图标*/
+.ztree li button.permission_ico_open
+{
+}
+.ztree li button.permission_ico_close
+{
+}
+.ztree li button.permission_ico_docu
+{
+    /* background: url("../Images/Common/permission_docu.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/permission_docu.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+/** 菜单节点图标*/
+.ztree li button.menu_ico_open
+{
+    /*     background: url("../Images/Common/menu_open.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/menu_open.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.menu_ico_close
+{
+    /* background: url("../Images/Common/menu_close.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/menu_close.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.menu_ico_docu
+{
+    /* background: url("../Images/Common/menu_docu.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/menu_docu.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+/** 集团节点图标*/
+.ztree li button.group_ico_open
+{
+    /* background: url("../Images/Common/group_open.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/group_open.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.group_ico_close
+{
+    /* background: url("../Images/Common/group_close.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/group_close.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.group_ico_docu
+{
+    /* background: url("../Images/Common/group_docu.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/group_docu.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+/** 公司节点图标*/
+.ztree li button.company_ico_open
+{
+    /* background: url("../Images/Common/company_open.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/company_open.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.company_ico_close
+{
+    /* background: url("../Images/Common/company_close.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/company_close.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.company_ico_docu
+{
+    /* background: url("../Images/Common/company_docu.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/company_docu.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+/** 部门节点图标*/
+.ztree li button.dept_ico_open
+{
+    /* background: url("../Images/Common/dept_open.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/dept_open.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.dept_ico_close
+{
+    /* background: url("../Images/Common/dept_close.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/dept_close.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.dept_ico_docu
+{
+    /* background: url("../Images/Common/dept_docu.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/dept_docu.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+/** 用户节点图标*/
+.ztree li button.user_ico_open
+{
+    /* background: url("../Images/Common/user_open.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/user_open.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.user_ico_close
+{
+    /* background: url("../Images/Common/user_close.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/user_close.png");
+    margin-right: 2px;
+    vertical-align: top;
+}
+.ztree li button.user_ico_docu
+{
+    /* background: url("../Images/Common/user_docu.png") no-repeat scroll 0 0 transparent!important; */
+    background-image: url("../Images/Common/user_docu.png");
+    margin-right: 2px;
+    vertical-align: top;
+}

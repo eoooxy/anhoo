@@ -1,0 +1,197 @@
+﻿.css-layout-aleft
+{
+    text-align: left;
+}
+.css-layout-acenter
+{
+    text-align: center;
+}
+.css-layout-aright
+{
+    text-align: right;
+}
+.css-layout-fleft
+{
+    float: left;
+}
+.css-layout-fright
+{
+    float: right;
+}
+.css-layout-relative
+{
+    position: relative;
+}
+.css_help_nodisplay
+{
+    display: none;
+}
+.css_help_hidden
+{
+    visibility: hidden;
+}
+.css-layout-colLeft
+{
+    margin: 0 5px 0 0;
+}
+.css-layout-colCenter
+{
+    margin: 0 5px;
+}
+.css-layout-colRight
+{
+    margin: 0 0 0 5px;
+}
+.css-layout-color-orange
+{
+    color: #FA8C00;
+}
+.css-layout-color-blue
+{
+    color: #0000ff;
+}
+.borderNone
+{
+    border: none;
+}
+.Common label
+{
+    width: 100%;
+}
+.Common select
+{
+    line-height: 22px;
+    height: 22px;
+    width: 100%;
+}
+.Common input
+{
+    width: 100%;
+}
+.table-form span.form-tips
+{
+    /*position:absolute;*/
+    float: left;
+}
+
+.form-tips.form-tips-nobg
+{
+    background-color: transparent;
+    border: none;
+}
+a:hover
+{
+    cursor: pointer;
+}
+.action-link
+{
+    cursor: pointer;
+}
+
+a.action-link.disabled, a.action-link.disabled:hover
+{
+    color: Gray;
+    cursor: default;
+}
+/* begin autocomplete */
+.ui-autocomplete
+{
+    max-height: 200px;
+    min-width: 50px;
+    max-width: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 20px;
+    _width: 150px !important;
+}
+* html .ui-autocomplete
+{
+    height: 200px;
+    max-width: 60px;
+}
+/* end autocomplete */
+
+a.btn.btn-disabled
+{
+    color: #999999;
+    cursor: not-allowed;
+    background-position: 0 -28px;
+}
+
+
+a.btn.btn-disabled span
+{
+    background-position: 100% -28px;
+}
+
+.successtips
+{
+    padding-right: 10px;
+}
+
+span.form-tips
+{
+    height: auto;
+}
+.btn-primary
+{
+    margin-top: 0px;
+}
+.mr10
+{
+    margin-left: 5px;
+}
+.imemode
+{
+    ime-mode: disabled;
+}
+
+.expand
+{
+    float: left;
+    background: url("../images/common/add.jpg") no-repeat 0 2px;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 2px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.expanded
+{
+    background: url("../images/common/sub.jpg") no-repeat 0 2px;
+}
+.tdLeft
+{
+    text-align: left !important;
+    padding-left: 15px !important;
+    width: 130px;
+}
+
+.tableA
+{
+    margin-left: 0;
+}
+.tableA tr
+{
+    margin: auto;
+    line-height: 24px;
+}
+.tableA tr td
+{
+    border: none;
+    padding: 0px;
+}
+
+/*validate*/
+.vali-error
+{
+    cursor: default;
+}
+.vali-error .title
+{
+    min-width: 120px;
+    color: #FF0000;
+    display: inline-block;
+}

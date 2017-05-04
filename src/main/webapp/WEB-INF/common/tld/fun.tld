@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <display-name>Custom Functions</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>cus-fun</short-name>
+    <uri>http://java.sun.com/jsp/jstl/functions</uri>
+
+
+    <!--添加js-->
+    <function>
+        <name>addJs</name>
+        <function-class>com.anhoo.util.WebUtil</function-class>
+        <function-signature>java.lang.String addJs(java.lang.String)</function-signature>
+    </function>
+
+    <!--添加css-->
+    <function>
+        <name>addCss</name>
+        <function-class>com.anhoo.util.WebUtil</function-class>
+        <function-signature>java.lang.String addCss(java.lang.String)</function-signature>
+    </function>
+
+    <!--获取基础路径-->
+    <function>
+        <name>getBaseUrl</name>
+        <function-class>com.anhoo.util.WebUtil</function-class>
+        <function-signature>java.lang.String getBaseUrl()</function-signature>
+    </function>
+
+</taglib>

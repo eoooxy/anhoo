@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <bean id="encodingFilter" class="org.springframework.web.filter.CharacterEncodingFilter">
+        <property name="encoding" value="UTF-8"/>
+        <property name="forceEncoding" value="true"/>
+    </bean>
+
+    <bean id="ahBack" class="com.anhoo.filter.Is2Back"/>
+
+
+    <bean id="filterChain" class="org.springframework.security.web.FilterChainProxy">
+        <s:filter-chain-map>
+            <s:filter-chain filters="ahBack" pattern="/back/*.do"/>
+            <s:filter-chain filters="encodingFilter" pattern="/"/>
+        </s:filter-chain-map>
+    </bean>
+
+</beans>
