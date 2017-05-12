@@ -1,5 +1,6 @@
 package com.anhoo.controller;
 
+import com.anhoo.dto.ResultCode;
 import com.anhoo.dto.ResultMsg;
 import com.anhoo.entity.User;
 import org.springframework.stereotype.Controller;
@@ -15,16 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IsLoginController {
 
     @RequestMapping("/isLogin")
-    public void isLogin(User user, ModelMap modelMap) {
+    public ResultMsg isLogin(User user) {
         ResultMsg resultMsg = new ResultMsg();
         if (user != null) {
-            resultMsg.setCode("100");
-            resultMsg.setMsg("Login is success!!");
+            resultMsg.setCode(ResultCode.SUCCESS);
+            resultMsg.setMsg("Login success!!");
         } else {
-            resultMsg.setCode("200");
-            resultMsg.setMsg("Login is fail!!");
+            resultMsg.setCode(ResultCode.FAIL);
+            resultMsg.setMsg("Login fail!!");
         }
-        modelMap.put("resultMsg", resultMsg);
+//        modelMap.put("resultMsg", resultMsg);
+        return resultMsg;
     }
 
 }

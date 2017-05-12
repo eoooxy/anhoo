@@ -3,9 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
-    <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="locations" value="properties/redis.properties"/>
+    <!-- 引入配置文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:properties/redis.properties"/>
     </bean>
 
     <!--redis哨兵 -->
@@ -30,7 +31,6 @@
         </property>
     </bean>-->
 
-
     <!--<bean id="jedisConnFactory"
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
         <property name="hostName" value="${redis.host}"/>
@@ -49,13 +49,12 @@
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
         <property name="hostName" value="${redis.host}"/>
         <property name="port" value="${redis.port}"/>
+        <property name="password" value="${redis.password}"/>
         <property name="usePool" value="false"/>
     </bean>
 
-    <!-- redis template definition -->
     <bean id="stringRedisTemplate"
           class="org.springframework.data.redis.core.StringRedisTemplate">
         <property name="connectionFactory" ref="jedisConnFactory"/>
     </bean>
-
 </beans>

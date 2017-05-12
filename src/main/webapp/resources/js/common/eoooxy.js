@@ -53,6 +53,14 @@ eoooxy.isEmpty = function (str, isTrim) {
     return str == null || !str || typeof str == undefined || str == '';
 };
 
+/**
+ *
+ * @param str1
+ * @param str2
+ */
+eoooxy.isEqual = function (str1, str2) {
+    return str1 == str2;
+};
 
 /**
  * @param type  ajax请求类型 post／get

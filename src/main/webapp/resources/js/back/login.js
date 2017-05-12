@@ -1,6 +1,8 @@
 /**
  * Created by eoooxy on 2017/4/26.
  */
+
+//登录上方的动态画面效果
 $(function () {
     //得到焦点
     $("#password").focus(function () {
@@ -34,6 +36,7 @@ $(function () {
     });
 });
 
+//登录判断
 function login() {
     var user = $("#username").val();
     var pwd = $("#password").val();
@@ -48,6 +51,51 @@ function login() {
                 console.log(r)
             }
             // location.href = "/back/index";
-        })
+        }, "json")
     }
+}
+
+//显示申请帐号界面
+function showApply() {
+    $("#login").hide();
+    $("#forgetAccount").hide();
+    $("#applyAccount").show();
+}
+
+//显示找回密码界面
+function showForget() {
+    $("#login").hide();
+    $("#applyAccount").hide();
+    $("#forgetAccount").show();
+}
+
+//创建帐号
+function createAccount() {
+    var user = $("#a_username").val();
+    var pwd = $("#a_password").val();
+    var pwd2 = $("#a_password_2").val();
+    if (eoooxy.isEmpty(user) || eoooxy.isEmpty(pwd) || eoooxy.isEmpty(pwd2)) {
+        var tips = $("#a_tips").innerText = "用户名或者密码不能为空！";
+        tips.show();
+        return false;
+    }
+    if (!eoooxy.isEmpty(pwd, pwd2)) {
+        var tips = $("#a_tips").innerText = "两次输入的密码不一致！";
+        tips.show();
+        return false;
+    }
+
+    var data = {"userName": user, "passWord": pwd};
+    eoooxy.ajax("post", "/back/isLogin", data, function (r) {
+        if (!eoooxy.isEmpty(r)) {
+            console.log(r)
+        }
+        // location.href = "/back/index";
+    }, "json")
+
+}
+
+//找回密码
+function getBackAccount() {
+
 }
