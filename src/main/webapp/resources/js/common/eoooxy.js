@@ -54,9 +54,10 @@ eoooxy.isEmpty = function (str, isTrim) {
 };
 
 /**
- *
+ * 判断两个字符串是否相等  相等返回true 否则返回false
  * @param str1
  * @param str2
+ * @returns {boolean}
  */
 eoooxy.isEqual = function (str1, str2) {
     return str1 == str2;

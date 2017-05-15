@@ -1,23 +1,25 @@
 package com.anhoo.entity;
 
+import java.io.Serializable;
+
 /**
  * author XueYuan
  * data  2017/05/03 20:48
  */
-public class User {
+public class UserEntity implements Serializable {
 
-    private int  recid;
+    private int recId;
 
     private String userName;
 
     private String passWord;
 
     public int getRecid() {
-        return recid;
+        return recId;
     }
 
-    public void setRecid(int recid) {
-        this.recid = recid;
+    public void setRecid(int recId) {
+        this.recId = recId;
     }
 
     public String getUserName() {

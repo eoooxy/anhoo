@@ -40,17 +40,21 @@ $(function () {
 function login() {
     var user = $("#username").val();
     var pwd = $("#password").val();
+    var tips = document.getElementById("tips");
     if (eoooxy.isEmpty(user) || eoooxy.isEmpty(pwd)) {
-        var tips = $("#tips").innerText = "用户名或者密码不能为空！";
-        tips.show();
+        tips.innerText = "用户名或者密码不能为空！";
+        $(tips).show();
         return false;
     } else {
         var data = {"userName": user, "passWord": pwd};
         eoooxy.ajax("post", "/back/isLogin", data, function (r) {
-            if (!eoooxy.isEmpty(r)) {
+            if (!eoooxy.isEmpty(r) && r.code == "100") {
                 console.log(r)
+                location.href = "/back/index";
+            } else {
+                tips.innerText = "帐号或密码错误！";
+                $(tips).show();
             }
-            // location.href = "/back/index";
         }, "json")
     }
 }
@@ -60,6 +64,13 @@ function showApply() {
     $("#login").hide();
     $("#forgetAccount").hide();
     $("#applyAccount").show();
+}
+
+//显示登录窗口界面
+function showLogin() {
+    $("#forgetAccount").hide();
+    $("#applyAccount").hide();
+    $("#login").show();
 }
 
 //显示找回密码界面
@@ -74,28 +85,43 @@ function createAccount() {
     var user = $("#a_username").val();
     var pwd = $("#a_password").val();
     var pwd2 = $("#a_password_2").val();
+    var tips = document.getElementById("a_tips");
     if (eoooxy.isEmpty(user) || eoooxy.isEmpty(pwd) || eoooxy.isEmpty(pwd2)) {
-        var tips = $("#a_tips").innerText = "用户名或者密码不能为空！";
-        tips.show();
+        tips.innerText = "用户名或者密码不能为空！"
+        $(tips).show();
         return false;
     }
-    if (!eoooxy.isEmpty(pwd, pwd2)) {
-        var tips = $("#a_tips").innerText = "两次输入的密码不一致！";
-        tips.show();
+    if (!eoooxy.isEqual(pwd, pwd2)) {
+        tips.innerText = "两次输入的密码不一致！";
+        $(tips).show();
         return false;
     }
 
     var data = {"userName": user, "passWord": pwd};
-    eoooxy.ajax("post", "/back/isLogin", data, function (r) {
-        if (!eoooxy.isEmpty(r)) {
+    eoooxy.ajax("post", "/back/apply", data, function (r) {
+        if (!eoooxy.isEmpty(r) && r.code == "100") {
             console.log(r)
+            tips.innerText = "注册成功，3秒后跳转到其他页面";
+            $(tips).show();
+
+            //等待3s 跳转到index页面
+            setTimeout(function () {
+                location.href = "/back/index";
+            }, 3000)
+        } else {
+            tips.innerText = r.msg;
+            $(tips).show();
         }
-        // location.href = "/back/index";
     }, "json")
 
 }
 
 //找回密码
 function getBackAccount() {
+
+}
+
+//发送验证码
+function getValidateCode(){
 
 }

@@ -13,7 +13,7 @@
 
     <import resource="spring-redis.xml"/>
 
-    <!--<import resource="spring-database.xml"/>-->
+    <import resource="spring-database.xml"/>
 
     <import resource="spring-security.xml"/>
 

@@ -15,6 +15,8 @@
 </head>
 <body>
 <div class="top_div"></div>
+
+<%--登录界面--%>
 <div class="out_div" id="login">
     <div style="width: 165px; height: 96px; position: absolute;">
         <div class="tou"></div>
@@ -34,13 +36,13 @@
         <p style="margin: 0px 35px 20px 45px;"><span style="float: left;">
             <a style="color: rgb(204, 204, 204);" href="javascript:void(0)" onclick="showForget()">忘记密码</a></span>
             <a style="color: rgb(204, 204, 204);" href="javascript:void(0)" onclick="showApply()">申请帐号</a></span>
-            <span style="float: right;"><a class="a_login" href="javascript:void(0)" onclick="login()">登录</a></span>
+            <span style="float: right;"><a class="a_btn" href="javascript:void(0)" onclick="login()">登录</a></span>
         </p>
     </div>
 </div>
 
+<%--申请帐号界面--%>
 <div class="out_div" id="applyAccount" style="height: 250px;" hidden="hidden">
-
     <p style="padding: 30px 0px 10px; position: relative;">
         <span class="u_logo"></span>
         <input class="ipt" type="text" id="a_username" placeholder="请输入用户名或邮箱" required="required" value="">
@@ -56,17 +58,27 @@
     <div class="in_div">
         <p style="margin: -40px 35px -10px 0px; color: red" id="a_tips" hidden="hidden">账号或密码错误</p>
         <p style="margin: 0px 35px 20px 45px;">
-            <span style="float: right;"><a class="a_login" href="javascript:void(0)" onclick="createAccount()">确定</a></span>
+            <span style="float: left;"><a class="a_btn" href="javascript:void(0)"
+                                          onclick="showLogin()">返回</a></span>
+            <span style="float: right;"><a class="a_btn" href="javascript:void(0)"
+                                           onclick="createAccount()">确定</a></span>
         </p>
+
     </div>
 </div>
 
-<div class="out_div" id="forgetAccount" style="height: 250px;" hidden="hidden">
-
+<%--找回密码界面--%>
+<div class="out_div" id="forgetAccount" style="height: 290px;" hidden="hidden">
     <p style="padding: 30px 0px 10px; position: relative;">
         <span class="u_logo"></span>
         <input class="ipt" type="text" id="f_username" placeholder="请输入用户名或邮箱" required="required" value="">
     </p>
+    <p style="position: relative;margin-bottom: 10px;">
+        <span class="p_logo"></span>
+        <input class="ipt" style=" width: 205px;" id="validateCode" placeholder="输入验证码" required="required" value="">
+        <span><a class="a_btn" href="javascript:void(0)" onclick="getValidateCode()">获取验证码</a></span>
+    </p>
+
     <p style="position: relative;margin-bottom: 10px;">
         <span class="p_logo"></span>
         <input class="ipt" id="f_password" type="password" placeholder="请输入密码" required="required" value="">
@@ -75,10 +87,14 @@
         <span class="p_logo"></span>
         <input class="ipt" id="f_password_2" type="password" placeholder="请再次输入密码" required="required" value="">
     </p>
+
     <div class="in_div">
         <p style="margin: -40px 35px -10px 0px; color: red" id="f_tips" hidden="hidden">账号或密码错误</p>
         <p style="margin: 0px 35px 20px 45px;">
-            <span style="float: right;"><a class="a_login" href="javascript:void(0)" onclick="getBackAccount()">确定</a></span>
+            <span style="float: left;"><a class="a_btn" href="javascript:void(0)"
+                                          onclick="showLogin()">返回</a></span>
+            <span style="float: right;"><a class="a_btn" href="javascript:void(0)"
+                                           onclick="getBackAccount()">确定</a></span>
         </p>
     </div>
 </div>

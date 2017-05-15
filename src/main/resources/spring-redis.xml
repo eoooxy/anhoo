@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 引入配置文件 -->
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:properties/redis.properties"/>
-    </bean>
+    <!--<bean id="propertyConfigurer"-->
+          <!--class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<property name="location" value="classpath:properties/redis.properties"/>-->
+        <!--&lt;!&ndash;<property name="ignoreUnresolvablePlaceholders" value="true"/>&ndash;&gt;-->
+    <!--</bean>-->
+
+    <context:property-placeholder location="classpath:properties/redis.properties" ignore-unresolvable="true"/>
 
     <!--redis哨兵 -->
     <!--<bean id="redisSentinelConfiguration"
@@ -31,19 +35,19 @@
         </property>
     </bean>-->
 
-    <!--<bean id="jedisConnFactory"
-          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-        <property name="hostName" value="${redis.host}"/>
-        <property name="port" value="${redis.port}"/>
-        <property name="usePool" value="false"/>
-        &lt;!&ndash;<constructor-arg ref="redisSentinelConfiguration"/>&ndash;&gt;
-        <property name="timeout" value="10000"/>
-    </bean>
+    <!--<bean id="jedisConnFactory"-->
+          <!--class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">-->
+        <!--<property name="hostName" value="${redis.host}"/>-->
+        <!--<property name="port" value="${redis.port}"/>-->
+        <!--<property name="password" value="${redis.password}"/>-->
+        <!--<property name="usePool" value="false"/>-->
+        <!--&lt;!&ndash;<constructor-arg ref="redisSentinelConfiguration"/>&ndash;&gt;-->
+        <!--<property name="timeout" value="10000"/>-->
+    <!--</bean>-->
 
-    <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
-        <property name="connectionFactory" ref="jedisConnFactory"/>
-    </bean>
-    -->
+    <!--<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">-->
+        <!--<property name="connectionFactory" ref="jedisConnFactory"/>-->
+    <!--</bean>-->
 
     <bean id="jedisConnFactory"
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
@@ -57,4 +61,5 @@
           class="org.springframework.data.redis.core.StringRedisTemplate">
         <property name="connectionFactory" ref="jedisConnFactory"/>
     </bean>
+
 </beans>
