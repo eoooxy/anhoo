@@ -1,9 +1,19 @@
 import com.alibaba.fastjson.JSON;
 import com.anhoo.entity.UserEntity;
+import com.anhoo.util.SerializeUtil;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.redis.connection.jedis.JedisConnection;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPoolConfig;
+import sun.plugin2.message.Serializer;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -67,6 +77,23 @@ public class RedisString {
         System.out.println("等待20s ……");
         //Thread.sleep(20000);
         System.out.println("20s到了，当前的Key:name对应的Value是否存在：" + template.hasKey("name") + ",值为：" + template.opsForValue().get("name"));
+    }
+
+    @Test
+    public void connectDb() throws SQLException {
+        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/anhoo";
+        String username = "root";
+        String password = "root";
+        Connection connection = DriverManager.getConnection(url, username, password);
+        PreparedStatement ps = connection.prepareStatement("CREATE DATABASE databasename");
+        int result = ps.executeUpdate();
+        System.out.println(result);
+    }
+
+    @Test
+    public void getConfig() {
+
     }
 
 }

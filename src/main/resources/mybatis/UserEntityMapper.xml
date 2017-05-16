@@ -2,9 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.anhoo.mapper.UserEntityMapper">
 
+    <cache type="com.anhoo.util.RedisCache"/>
+
+    <!--<cache type="org.mybatis.caches.redis.RedisCache"/>-->
+
     <select id="selectByUserName" parameterType="java.lang.String" resultType="com.anhoo.entity.UserEntity">
         SELECT *
         FROM user
         WHERE username = #{userName,jdbcType=VARCHAR}
     </select>
+
 </mapper>

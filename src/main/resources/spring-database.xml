@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-
-    <!--<context:property-placeholder location="classpath:properties/database.properties" ignore-unresolvable="true"/>-->
-
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:properties/database.properties"/>
-    </bean>
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
 
@@ -24,7 +15,7 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!--<property name="configLocation" value="classpath:mybatis-config.xml"/>-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="typeAliasesPackage" value="com.anhoo.entity"/>
         <property name="mapperLocations" value="classpath*:mybatis/**/*.xml"/>
        <!-- <property name="plugins">
@@ -35,22 +26,6 @@
             </list>
         </property>-->
     </bean>
-
-    <!--&lt;!&ndash; spring和MyBatis完美整合，不需要mybatis的配置映射文件 &ndash;&gt;-->
-    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-        <!--&lt;!&ndash; 自动扫描mapping.xml文件 &ndash;&gt;-->
-        <!--<property name="mapperLocations" value="classpath:mybatis/*.xml"/>-->
-      <!--&lt;!&ndash;  <property name="plugins">-->
-            <!--<list>-->
-                <!--<bean-->
-                        <!--class="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">-->
-                    <!--<property name="dialectClass"-->
-                              <!--value="com.github.miemiedev.mybatis.paginator.dialect.OracleDialect"></property>-->
-                <!--</bean>-->
-            <!--</list>-->
-        <!--</property>&ndash;&gt;-->
-    <!--</bean>-->
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

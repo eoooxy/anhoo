@@ -11,6 +11,14 @@
 
     <context:component-scan base-package="com.anhoo"/>
 
+    <!--<context:property-placeholder location="classpath:properties/config.properties"/>-->
+
+    <!-- 引入配置文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:properties/config.properties"/>
+    </bean>
+
     <import resource="spring-redis.xml"/>
 
     <import resource="spring-database.xml"/>
