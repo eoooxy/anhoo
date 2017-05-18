@@ -14,7 +14,7 @@ public class Is2Back implements javax.servlet.Filter {
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("Is2Back 过滤器被调用了");
+//        System.out.println("Is2Back 过滤器被调用了");
 
         filterChain.doFilter(servletRequest, servletResponse);
 

@@ -1,14 +1,10 @@
 import com.alibaba.fastjson.JSON;
 import com.anhoo.entity.UserEntity;
-import com.anhoo.util.SerializeUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.data.redis.connection.jedis.JedisConnection;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPoolConfig;
-import sun.plugin2.message.Serializer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,13 +26,9 @@ import java.util.concurrent.TimeUnit;
 
 public class RedisString {
 
+
     @Test
     public void redis() {
-//        System.out.println("123");
-
-//        Jedis jedis = new Jedis("127.0.0.1", 7777);
-//        jedis.auth("eoooxy");
-//        System.out.println(jedis.bitcount("bit_1"));
 
         Map<String, List<Map<String, String>>> hashMap = new HashMap<String, List<Map<String, String>>>();
         Map<String, String> map = new HashMap<>();
@@ -47,11 +39,10 @@ public class RedisString {
 
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-redis.xml");
         StringRedisTemplate template = ctx.getBean(StringRedisTemplate.class);
+        template.opsForValue().set("name", "eoooxy");
         template.opsForHash().put("hash", "name", hashMap.toString());
+        System.out.println(template.opsForValue().get("name"));
         System.out.println(template.opsForHash().get("hash", "name"));
-//        List<Map> mapList = (List<Map>) template.opsForHash().get("hash", "name");
-//
-//        System.out.println(mapList.size());
 
     }
 
@@ -91,9 +82,18 @@ public class RedisString {
         System.out.println(result);
     }
 
+    static Logger logger = LogManager.getLogger(RedisString.class);
+
     @Test
-    public void getConfig() {
+    public void log4j() {
+        logger.trace("trace message");
+        logger.debug("debug message");
+        logger.info("info message");
+        logger.warn("warn message");
+        logger.error("error message");
+        logger.fatal("fatal message");
+        System.out.println("Hello World!");
+
 
     }
-
 }

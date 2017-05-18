@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--1800 表示log42j没1800s（半小时）自动监控该配置文件是否有变化，如果变化，则自动根据文件内容重新配置-->
+<Configuration status="WARN" monitorInterval="1800">
+
+    <properties>
+        <property name="LOG_HOME">logs</property>
+        <property name="FILE_NAME">anhoo</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!--filePattern 当单个文件夹超过10MB之后，类似 2014-09（年-月）的目录，然后按 "xxx-年-月-日-序号"命名，打成压缩包-->
+        <RollingRandomAccessFile name="running-log"
+                                 fileName="${LOG_HOME}/${FILE_NAME}.log"
+                                 filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout
+                    pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!--表示压缩包最大保留的个数为20-->
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <!--自定义log-->
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

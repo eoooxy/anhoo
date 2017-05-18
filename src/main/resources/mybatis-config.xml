@@ -5,7 +5,6 @@
     <settings>
         <!--<setting name="logImpl" value="LOG4J2" />-->
 
-
         <!-- 全局映射器启用缓存-->
         <setting name="cacheEnabled" value="true"/>
     </settings>

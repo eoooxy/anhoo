@@ -10,7 +10,6 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * Created by IntelliJ IDEA.
  * Author XueYuan
  * Data  2017/05/16
  * Time  16:04
@@ -68,6 +67,8 @@ public class RedisCache extends BaseBean implements Cache {
         try {
             connection = (JedisConnection) jedisConnectionFactory.getConnection();
             result = SerializeUtil.unserialize(connection.get(SerializeUtil.serialize(key)));
+//            result = SerializeUtil.unserialize(connection.hGet(RedisCache.this.id.toString().getBytes(),
+//                    key.toString().getBytes()));
         } catch (JedisConnectionException e) {
             e.printStackTrace();
         } finally {
@@ -89,6 +90,7 @@ public class RedisCache extends BaseBean implements Cache {
         try {
             connection = (JedisConnection) jedisConnectionFactory.getConnection();
             result = Integer.valueOf(connection.dbSize().toString());
+//            result = Integer.valueOf(connection.hGetAll(RedisCache.this.id.toString().getBytes()).size());
         } catch (JedisConnectionException e) {
             e.printStackTrace();
         } finally {
@@ -108,9 +110,12 @@ public class RedisCache extends BaseBean implements Cache {
     public void putObject(Object key, Object value) {
         JedisConnection connection = null;
         try {
-            logger.debug("------------------Redis Put Object:" + key.toString() + ":" + value.toString() + "-------------------");
+            logger.debug("------------------Redis Put Object:" + key.toString() + ":"
+                    + value.toString() + "-------------------");
             connection = (JedisConnection) jedisConnectionFactory.getConnection();
             connection.set(SerializeUtil.serialize(key), SerializeUtil.serialize(value));
+//            connection.hSet(RedisCache.this.id.toString().getBytes(),key.toString().getBytes(),
+//                    SerializeUtil.serialize(value));
         } catch (JedisConnectionException e) {
             e.printStackTrace();
         } finally {
@@ -132,7 +137,8 @@ public class RedisCache extends BaseBean implements Cache {
         try {
             connection = (JedisConnection) jedisConnectionFactory.getConnection();
             result = connection.expire(SerializeUtil.serialize(key), 0);
-            //or  result = connection.del(SerializeUtil.serialize(key));
+            //或者  result = connection.del(SerializeUtil.serialize(key));
+//            result = connection.hDel(RedisCache.this.id.toString().getBytes(),key.toString().getBytes());
         } catch (JedisConnectionException e) {
             e.printStackTrace();
         } finally {
@@ -148,6 +154,10 @@ public class RedisCache extends BaseBean implements Cache {
         return this.readWriteLock;
     }
 
+    /**
+     * 注入jedisConnectionFactory
+     * @param jedisConnectionFactory
+     */
     public static void setJedisConnectionFactory(JedisConnectionFactory jedisConnectionFactory) {
         RedisCache.jedisConnectionFactory = jedisConnectionFactory;
     }

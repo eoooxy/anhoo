@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     StringRedisTemplate stringRedisTemplate;
+
     @Autowired
     UserEntityMapper userEntityMapper;
 
