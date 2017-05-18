@@ -283,10 +283,66 @@
 
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>dev</env>
+                <!--<redis.host>127.0.0.1</redis.host>-->
+                <!--<redis.port>7777</redis.port>-->
+                <!--<redis.password>eoooxy</redis.password>-->
+                <!--<driver>com.mysql.jdbc.Driver</driver>-->
+                <!--<url>jdbc:mysql://localhost:3306/anhoo</url>-->
+                <!--<usernam>root</usernam>-->
+                <!--<password>root</password>-->
+            </properties>
+        </profile>
+        <profile>
+            <id>pre</id>
+            <properties>
+                <env>pre</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties>
+                <env>pro</env>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
-        <finalName>anhoo</finalName>
+        <finalName>${project.artifactId}</finalName>
+
+        <!-- 使用指定的filter进行过滤，在执行mvn命令的时候带上-Ppro就代表生产环境，就会加载生产环境的properties，-Pdev就代表开发环境（默认） -->
+        <filters>
+            <filter>src/main/resources/properties/env/${env}.properties</filter>
+        </filters>
+
+        <!-- 资源文件位置src/main/resources/,这下面的资源文件的${}会全部被替换成filter中的标签内容。
+                 directory指定的value会作为classes的资源跟目录，
+                 比如指定:src/main/resources/，则classes下会出现jdbc等包，
+                 若指定:src/main/resources/jdbc/，则classes下直接出现jdbc包下的文件，不会额外出现jdbc等其他包结构。因为他把jdbc作为了根目录
+         -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <!--
+                      exclude可以排除指定文件，支持通配符 ,匹配项不会生成到classes目录下，路径是以directory开始的
+                      在这里就是directory（src/main/resources/）/properties/env/pro.properties
+                 -->
+                <!--<excludes>-->
+                <!--<exclude>properties/env/pro.properties</exclude>-->
+                <!--</excludes>-->
+            </resource>
+        </resources>
+
         <plugins>
+            <!--mybatis 引用generator插件自动生成code-->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -322,8 +378,6 @@
                 </configuration>
             </plugin>
         </plugins>
-
-
     </build>
 
 </project>
