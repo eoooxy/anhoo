@@ -14,4 +14,9 @@ public class BaseJumpController {
     public String index() {
         return "index";
     }
+
+    @RequestMapping("vote")
+    public String vote() {
+        return "vote";
+    }
 }

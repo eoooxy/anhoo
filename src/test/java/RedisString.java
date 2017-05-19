@@ -93,7 +93,16 @@ public class RedisString {
         logger.error("error message");
         logger.fatal("fatal message");
         System.out.println("Hello World!");
+    }
 
+    @Test
+    public void string() {
+        String str = "Hello Java World!";
+        System.out.println(str.indexOf(97));
+        System.out.println(str.indexOf("Java"));
+        System.out.println(str.indexOf("3123"));
 
     }
+
+
 }
