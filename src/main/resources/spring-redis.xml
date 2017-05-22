@@ -46,4 +46,20 @@
         <property name="jedisConnectionFactory" ref="jedisConnFactory"/>
     </bean>
 
+
+    <bean id="pubSubService" class="com.anhoo.service.impl.SubServiceImpl"/>
+
+    <bean id="listenerContainer" class="org.springframework.data.redis.listener.RedisMessageListenerContainer">
+        <property name="connectionFactory" ref="jedisConnFactory"/>
+        <property name="messageListeners">
+            <map>
+                <entry key-ref="pubSubService" value-ref="patternTopic"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="patternTopic" class="org.springframework.data.redis.listener.PatternTopic">
+        <constructor-arg value="chat_*"/>
+    </bean>
+
 </beans>

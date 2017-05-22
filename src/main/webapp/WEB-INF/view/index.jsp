@@ -14,11 +14,5 @@
 </head>
 <body>
 <h1>Hello World</h1>
-<div>
-    <form method="post">
-        <input>
-        <button>确定</button>
-    </form>
-</div>
 </body>
 </html>

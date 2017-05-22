@@ -57,11 +57,11 @@
             return false;
         }
         var data = {"inviteCode": id, "key": key}
-        eoooxy.ajax("post", "/add", data, function (r) {
+        eoooxy.ajax("post", "/back/add", data, function (r) {
             if (!eoooxy.isEmpty(r) && r.code == '100') {
                 alert(r.msg);
                 setTimeout(function () {
-                    location.href = "/vote";
+                    location.href = "/back/vote";
                 }, 3000)
             } else {
                 alert(r.msg);
