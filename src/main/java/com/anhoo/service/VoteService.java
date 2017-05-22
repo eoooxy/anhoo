@@ -1,9 +1,7 @@
 package com.anhoo.service;
 
-import com.anhoo.entity.VoteEntity;
 import org.springframework.data.redis.core.ZSetOperations;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,5 +13,7 @@ import java.util.Set;
 
 public interface VoteService {
 
-    List<VoteEntity> getVotes();
+    Set<ZSetOperations.TypedTuple<String>> getVotes();
+
+    int addTickets(String tickets,String key);
 }

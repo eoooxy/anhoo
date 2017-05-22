@@ -10,9 +10,15 @@
 <html>
 <head>
     <%@include file="/WEB-INF/view/common/meta.jsp" %>
-    <title>安虎电气</title>
+    <title>主页</title>
 </head>
 <body>
 <h1>Hello World</h1>
+<div>
+    <form method="post">
+        <input>
+        <button>确定</button>
+    </form>
+</div>
 </body>
 </html>

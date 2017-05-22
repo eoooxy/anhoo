@@ -99,7 +99,7 @@ function createAccount() {
 
     var data = {"userName": user, "passWord": pwd};
     eoooxy.ajax("post", "/back/apply", data, function (r) {
-        if (!eoooxy.isEmpty(r) && r.code == "100") {
+        if (!eoooxy.isEmpty(r) && r.code == '100') {
             console.log(r)
             tips.innerText = "注册成功，3秒后跳转到其他页面";
             $(tips).show();

@@ -13,13 +13,11 @@
 </head>
 <body>
 <div>
-    <form id="form">
-        <span>输入邀请码：<input id="inviteCode" placeholder="八位邀请码"><button id="ok" onclick="vId()">确定</button></span><br/>
-        <span>当前输入邀请码为：<label id="sInviteCode"></label></span>
-    </form>
+    <span>输入邀请码：<input id="inviteCode" placeholder="八位邀请码"><button id="ok" onclick="vId()">确定</button></span><br/>
+    <span>当前输入邀请码为：<label id="sInviteCode"></label></span>
 </div>
 
-<table style="margin-top: 20px;">
+<table style="margin-top: 20px;" id="table">
     <tr>
         <th>姓名</th>
         <th>票数</th>
@@ -27,10 +25,10 @@
     </tr>
     <c:forEach items="${votes}" var="v">
         <tr>
-            <td>${v.name}</td>
-            <td>${v.scores}</td>
+            <td>${v.value}</td>
+            <td>${v.score}</td>
             <td>
-                <button onclick="addNum('${v.name}')">投票</button>
+                <button onclick="addNum('${v.value}')">投票</button>
             </td>
         </tr>
     </c:forEach>
@@ -38,9 +36,9 @@
 </body>
 
 <script>
+
     function vId() {
         var id = $("#inviteCode").val();
-        var f = $("#form");
         var reg = /\d{8}/;
         if (eoooxy.isEmpty(id) || !reg.test(id) || id.length > 8) {
             alert("请输入8位邀请码")
@@ -48,18 +46,27 @@
         }
         var label = $("#sInviteCode");
         label.html(id);
-        f.attr("action","/voteList").submit();
 
-
-//        eoooxy.ajax("post", "/voteList", null, function (r) {
-//            if (eoooxy.isEmpty(r) && r.code == 100) {
-//                window.location.href = "/voteList";
-//            }
-//        });
     }
 
-    function addNum(str) {
+    function addNum(key) {
+        var id = $("#inviteCode").val();
 
+        if (eoooxy.isEmpty(id)) {
+            alert("请输入8位邀请码")
+            return false;
+        }
+        var data = {"inviteCode": id, "key": key}
+        eoooxy.ajax("post", "/add", data, function (r) {
+            if (!eoooxy.isEmpty(r) && r.code == '100') {
+                alert(r.msg);
+                setTimeout(function () {
+                    location.href = "/vote";
+                }, 3000)
+            } else {
+                alert(r.msg);
+            }
+        });
     }
 </script>
 </html>

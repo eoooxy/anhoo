@@ -1,14 +1,11 @@
 package com.anhoo.service.impl;
 
-import com.anhoo.entity.VoteEntity;
 import com.anhoo.service.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,18 +22,20 @@ public class VoteServiceImpl implements VoteService {
     StringRedisTemplate stringRedisTemplate;
 
     @Override
-    public List<VoteEntity> getVotes() {
+    public Set<ZSetOperations.TypedTuple<String>> getVotes() {
 
-        List<VoteEntity> lists = new ArrayList<>();
-        Set<ZSetOperations.TypedTuple<String>> set = stringRedisTemplate.opsForZSet().rangeWithScores("vote", 0, -1);
+        Set<ZSetOperations.TypedTuple<String>> set = stringRedisTemplate.opsForZSet().reverseRangeWithScores("vote", 0, -1);
+        return set;
+    }
 
-        for (ZSetOperations.TypedTuple s : set) {
-            VoteEntity voteEntity = new VoteEntity();
-            voteEntity.setName(s.getValue().toString());
-            voteEntity.setScores(s.getScore().intValue());
-            lists.add(voteEntity);
+    @Override
+    public int addTickets(String tickets, String key) {
+        if (!stringRedisTemplate.opsForSet().isMember("voteTickets", tickets)) {
+            stringRedisTemplate.opsForSet().add("voteTickets", tickets);
+            stringRedisTemplate.opsForZSet().incrementScore("vote", key, 1);
+            return 1;
+        } else {
+            return 0;
         }
-        return lists;
-
     }
 }
