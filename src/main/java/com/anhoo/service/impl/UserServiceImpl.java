@@ -31,6 +31,10 @@ public class UserServiceImpl implements UserService {
         Map<Object, Object> maps = stringRedisTemplate.opsForHash().entries("User");
 
         UserEntity u = userEntityMapper.selectByUserName(userEntity.getUserName());
+//
+//        if(u.getPassWord().equals(userEntity.getPassWord()) && u.getUserName().equals(userEntity.getUserName())){
+//
+//        }
 
         if (maps.get(userEntity.getUserName()) != null) {
             //把json转成对应的Object对象
@@ -60,5 +64,7 @@ public class UserServiceImpl implements UserService {
             return 0;
         }
     }
+
+
 
 }

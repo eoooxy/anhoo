@@ -22,6 +22,7 @@ public class PubServiceImpl implements PubService {
     @Override
     public void sendMessage(MessageEntity messageEntity) {
         String channel = "chat_";
-        stringRedisTemplate.convertAndSend(channel + messageEntity.getUser(), messageEntity.getContent());
+        String content = messageEntity.getContent();
+        stringRedisTemplate.convertAndSend(channel + messageEntity.getUser(), content);
     }
 }

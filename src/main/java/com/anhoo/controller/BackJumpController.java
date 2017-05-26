@@ -28,6 +28,7 @@ public class BackJumpController {
 
     @RequestMapping("/index")
     public String index() {
+
         return "/back/index";
     }
 

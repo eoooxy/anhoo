@@ -1,6 +1,7 @@
 package com.anhoo.service;
 
-import org.springframework.data.redis.connection.MessageListener;
+import com.anhoo.entity.MessageEntity;
+import org.springframework.data.redis.connection.Message;
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,6 +10,9 @@ import org.springframework.data.redis.connection.MessageListener;
  * Time  11:26
  */
 
-public interface SubService extends MessageListener {
+public interface SubService {
 
+    void isCall(Message message);
+
+    MessageEntity callBack(String user);
 }

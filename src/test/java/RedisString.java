@@ -5,15 +5,13 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import redis.clients.jedis.Jedis;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -43,7 +41,6 @@ public class RedisString {
         template.opsForHash().put("hash", "name", hashMap.toString());
         System.out.println(template.opsForValue().get("name"));
         System.out.println(template.opsForHash().get("hash", "name"));
-
     }
 
     @Test
@@ -97,11 +94,30 @@ public class RedisString {
 
     @Test
     public void string() {
-        String str = "Hello Java World!";
-        System.out.println(str.indexOf(97));
+        String str = "Hello J@@@ World!";
+        System.out.println(str.split("@@@")[0]);
         System.out.println(str.indexOf("Java"));
         System.out.println(str.indexOf("3123"));
+    }
 
+
+    @Test
+    public void factory() {
+//      简单工厂
+        Product a = CreateFactory.createProduct("A");
+        Product b = CreateFactory.createProduct("B");
+        a.publicMethod();
+        b.publicMethod();
+
+//     工厂方法
+        Create aCreate = new ACreate();
+        aCreate.getProduct().publicMethod();
+        Create bCreate = new BCreate();
+        bCreate.getProduct().publicMethod();
+
+
+//        List list
+//        Set
     }
 
 

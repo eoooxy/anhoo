@@ -16,4 +16,6 @@ public interface UserService {
     int create(UserEntity userEntity);
 
     int isExists(UserEntity userEntity);
+
+//    UserEntity getUsers();
 }

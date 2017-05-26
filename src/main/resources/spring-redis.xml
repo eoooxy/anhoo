@@ -47,13 +47,14 @@
     </bean>
 
 
-    <bean id="pubSubService" class="com.anhoo.service.impl.SubServiceImpl"/>
+    <!--chat-->
+    <bean id="msgListener" class="com.anhoo.util.MyMsgListener"/>
 
     <bean id="listenerContainer" class="org.springframework.data.redis.listener.RedisMessageListenerContainer">
         <property name="connectionFactory" ref="jedisConnFactory"/>
         <property name="messageListeners">
             <map>
-                <entry key-ref="pubSubService" value-ref="patternTopic"/>
+                <entry key-ref="msgListener" value-ref="patternTopic"/>
             </map>
         </property>
     </bean>

@@ -45,6 +45,20 @@
             <version>${spring_version}</version>
         </dependency>
 
+        <!--Spring websocket-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
+
+
         <!--Spring 对JDBC访问需要的类 -->
         <dependency>
             <groupId>org.springframework</groupId>

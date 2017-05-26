@@ -71,7 +71,7 @@ eoooxy.isEqual = function (str1, str2) {
  * @param successCallback 成功调用的函数
  * @param errorCallback  失败调用的函数
  */
-eoooxy.ajax = function (type, url, data, successCallback, datatype, errorCallback, async) {
+eoooxy.ajax = function (type, url, data, successCallback, datatype, errorCallback, timeout, async) {
     $.ajax({
         type: type,
         async: (async == null || async == undefined) ? true : async,
@@ -79,6 +79,7 @@ eoooxy.ajax = function (type, url, data, successCallback, datatype, errorCallbac
         data: data,
         success: successCallback,
         dataType: datatype,
-        error: errorCallback
+        error: errorCallback,
+        timeout: timeout
     });
 }

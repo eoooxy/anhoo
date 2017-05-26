@@ -29,7 +29,7 @@ public class VoteListController {
         ResultMsg resultMsg = new ResultMsg();
         if (voteService.addTickets(inviteCode, key) > 0) {
             resultMsg.setCode(ResultCode.SUCCESS);
-            resultMsg.setMsg("投票成功，3秒后刷新页面！");
+            resultMsg.setMsg("投票成功，稍后刷新页面！");
         } else {
             resultMsg.setCode(ResultCode.FAIL);
             resultMsg.setMsg("当前票号已投过票！");
