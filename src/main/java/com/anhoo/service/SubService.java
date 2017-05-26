@@ -14,5 +14,5 @@ public interface SubService {
 
     void isCall(Message message);
 
-    MessageEntity callBack(String user);
+    MessageEntity callBack(String user) throws InterruptedException;
 }

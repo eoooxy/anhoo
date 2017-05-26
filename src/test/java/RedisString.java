@@ -103,21 +103,42 @@ public class RedisString {
 
     @Test
     public void factory() {
-//      简单工厂
-        Product a = CreateFactory.createProduct("A");
-        Product b = CreateFactory.createProduct("B");
-        a.publicMethod();
-        b.publicMethod();
+//        System.out.println("=============================== 简单工厂 ==================================");
+////      简单工厂
+//        //首先我们找到了制造圆珠笔的厂家
+//        CreateBallPen createBallPen = new CreateBallPen();
+//        //告知 批发商要得力牌子的圆珠笔
+//        BallPen dl = createBallPen.createBallPen("dl");
+//        dl.method();
+//        //告知 批发商要晨光牌子的圆珠笔
+//        BallPen cg = createBallPen.createBallPen("cg");
+//        cg.method();
 
-//     工厂方法
-        Create aCreate = new ACreate();
-        aCreate.getProduct().publicMethod();
-        Create bCreate = new BCreate();
-        bCreate.getProduct().publicMethod();
 
-
-//        List list
-//        Set
+//        System.out.println("=============================== 工厂方法 ==================================");
+////     工厂方法
+//        //有商家需要铅笔,先告知铅笔厂,我们需要制作铅笔
+//        Pencil pencil = new CreatePencil().create();
+//        //告诉铅笔厂，我们需要生产的品牌是得力。
+//        pencil.dl();
+//        //有商家需要圆珠笔
+//        BallPen ballPen = new CreateBallPen().create();
+//        ballPen.cg();
+//
+        System.out.println("=============================== 抽象工厂 ==================================");
+//        抽象工厂
+//        X地方的 铅笔和圆珠笔
+        Place x = new XPlace();
+        BallPen ballPen = x.ballPen("X");
+        ballPen.dl();
+        Pencil pencill = x.pencil("X");
+        pencill.cg();
+//        Y地方的 铅笔和圆珠笔
+        Place y = new YPlace();
+        BallPen yballPen = y.ballPen("Y");
+        yballPen.dl();
+        Pencil ypencill = y.pencil("Y");
+        ypencill.cg();
     }
 
 

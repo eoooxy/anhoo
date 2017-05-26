@@ -45,7 +45,11 @@ public class UserServiceImpl implements UserService {
                 return 0;
             }
         } else {
-            return 0;
+            if (userEntity.getPassWord().equals(u.getPassWord()) && userEntity.getUserName().equals(u.getUserName())) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
     }
 
@@ -64,7 +68,6 @@ public class UserServiceImpl implements UserService {
             return 0;
         }
     }
-
 
 
 }

@@ -11,11 +11,17 @@ function loading() {
             var o = r.content;
             var h = "<div style='margin: 10px 20px 10px 20px;'><label>" + o.user + "</label><br><label>" + o.content + "</label></div>";
             $("#chatSpace").append(h);
+            $("#chatSpace")[0].scrollTop = $("#chatSpace")[0].scrollHeight;
+            //$("#content").focus();
             loading();
         } else {
             loading();
         }
-    }, "json")
+    }, "json"/*, function (XMLHttpRequest, status) {
+        if (status == 'timeout') {//超时,status还有success,error等值的情况
+            loading();
+        }
+    }, 3000*/)
 }
 
 function chatting() {

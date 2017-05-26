@@ -53,7 +53,7 @@ public class ChatController {
 
     @ResponseBody
     @RequestMapping("/callBack")
-    public ResultMsg callMsg(String user) {
+    public ResultMsg callMsg(String user) throws InterruptedException {
         ResultMsg resultMsg = new ResultMsg();
         Logger logger = LogManager.getLogger(ChatController.class);
         MessageEntity message;
