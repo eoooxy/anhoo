@@ -28,9 +28,13 @@ public class BackJumpController {
 
     @RequestMapping("/index")
     public String index() {
-
         return "/back/index";
     }
+
+//    @RequestMapping("/webSocket")
+//    public String webSocket() {
+//        return "/back/webSocket";
+//    }
 
     @RequestMapping("/chat")
     public String chat() {

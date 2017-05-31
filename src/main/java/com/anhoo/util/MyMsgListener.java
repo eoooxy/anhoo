@@ -19,7 +19,7 @@ public class MyMsgListener implements MessageListener {
     public void onMessage(Message message, byte[] bytes) {
         subService.isCall(message);
 //        System.out.println(SerializeUtil.unserialize(bytes).toString());
-        System.out.println(message.toString());
+        System.out.println("当前的Message值为:" + message.toString());
     }
 
 }

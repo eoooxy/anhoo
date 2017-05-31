@@ -21,8 +21,10 @@ public class PubServiceImpl implements PubService {
 
     @Override
     public void sendMessage(MessageEntity messageEntity) {
+        //消息的频道为chat_*
         String channel = "chat_";
         String content = messageEntity.getContent();
+        //使得发送消息的 频道为chat_用户名  例如chat_jack 为了后面能根据这个得到 jack用户
         stringRedisTemplate.convertAndSend(channel + messageEntity.getUser(), content);
     }
 }

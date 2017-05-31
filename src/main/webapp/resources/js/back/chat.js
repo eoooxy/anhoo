@@ -5,17 +5,18 @@ $(function () {
     $("#user").focus();
 });
 
-function loading() {
-    eoooxy.ajax("post", "/back/callBack", null, function (r) {
+function loading(user) {
+    eoooxy.ajax("post", "/back/callBack", {"user":user}, function (r) {
         if (!eoooxy.isEmpty(r) && r.code == '100') {
             var o = r.content;
             var h = "<div style='margin: 10px 20px 10px 20px;'><label>" + o.user + "</label><br><label>" + o.content + "</label></div>";
             $("#chatSpace").append(h);
             $("#chatSpace")[0].scrollTop = $("#chatSpace")[0].scrollHeight;
             //$("#content").focus();
-            loading();
+            loading(user);
         } else {
-            loading();
+            console.log("当前没有消息，继续请求……");
+            loading(user);
         }
     }, "json"/*, function (XMLHttpRequest, status) {
         if (status == 'timeout') {//超时,status还有success,error等值的情况
@@ -29,11 +30,11 @@ function chatting() {
         alert("必须先输入昵称，然后点击开始聊天！");
         return false;
     }
-    $("#user").attr("disabled", "disabled");
     var data = {"user": $("#user").val()};
     eoooxy.ajax("post", "/back/join", data, function (r) {
         if (!eoooxy.isEmpty(r) && r.code == '100') {
-            loading();
+            $("#user").attr("disabled", "disabled");
+            loading($("#user").val());
         } else {
             alert(r.msg);
         }

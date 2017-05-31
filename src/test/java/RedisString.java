@@ -290,5 +290,8 @@ public class RedisString {
         System.out.println(new String(resultBytes2));
     }
 
-
+    @Test
+    public void luanma(){
+        System.out.println("私钥加密 公钥解密");
+    }
 }

@@ -444,7 +444,7 @@ Parser3 ("parser3"):
   comment          commment
   variable         variable starting with "$"
   preprocessor     preprocessor directive
-  title            user-defined name starting with "@"
+  title            userEntity-defined name starting with "@"
 
 TeX ("tex"):
 

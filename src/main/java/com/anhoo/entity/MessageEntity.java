@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Time  16:48
  */
 
-public class MessageEntity implements Serializable{
+public class MessageEntity implements Serializable {
 
     private String user;
     private String content;

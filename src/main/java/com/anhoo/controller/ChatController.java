@@ -59,8 +59,6 @@ public class ChatController {
         MessageEntity message;
         message = subService.callBack(user);
         if (message != null) {
-//            String userId = (String) SerializeUtil.unserialize(message.getChannel());
-//            String content = (String) SerializeUtil.unserialize(message.getBody());
             resultMsg.setCode(ResultCode.SUCCESS);
             resultMsg.setContent(message);
             return resultMsg;
