@@ -67,4 +67,26 @@ public class AccountController {
         return resultMsg;
     }
 
+    @ResponseBody
+    @RequestMapping("/update")
+    public ResultMsg updateAccount() {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUserName("123");
+        userEntity.setPassWord("123");
+        ResultMsg resultMsg = new ResultMsg();
+        if (userEntity.getUserName() != null && userEntity.getUserName() != ""
+                && userEntity.getPassWord() != null && userEntity.getPassWord() != "") {
+
+            if (userServicel.updata(userEntity) > 0) {
+                resultMsg.setCode(ResultCode.SUCCESS);
+                resultMsg.setMsg("更新成功！");
+                return resultMsg;
+            }
+        } else {
+            resultMsg.setCode(ResultCode.FAIL);
+            resultMsg.setMsg("操作失败！");
+        }
+        return resultMsg;
+    }
+
 }

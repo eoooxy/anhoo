@@ -17,5 +17,5 @@ public interface UserService {
 
     int isExists(UserEntity userEntity);
 
-//    UserEntity getUsers();
+    int updata(UserEntity userEntity);
 }

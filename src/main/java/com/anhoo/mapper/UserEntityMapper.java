@@ -1,6 +1,7 @@
 package com.anhoo.mapper;
 
 import com.anhoo.entity.UserEntity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,4 +17,6 @@ public interface UserEntityMapper {
     int insert(UserEntity userEntity);
 
     UserEntity selectByUserName(String userName);
+
+    int updateUser(UserEntity userEntity);
 }

@@ -1,6 +1,7 @@
 package com.anhoo.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.anhoo.dto.RedisKey;
 import com.anhoo.entity.UserEntity;
 import com.anhoo.mapper.UserEntityMapper;
 import com.anhoo.service.UserService;
@@ -28,17 +29,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int isLogin(UserEntity userEntity) {
-        Map<Object, Object> maps = stringRedisTemplate.opsForHash().entries("User");
+//        Map<Object, Object> maps = stringRedisTemplate.opsForHash().entries("User");
 
+        String s = stringRedisTemplate.opsForValue().get(RedisKey.INFOKEY);
         UserEntity u = userEntityMapper.selectByUserName(userEntity.getUserName());
 //
 //        if(u.getPassWord().equals(userEntity.getPassWord()) && u.getUserName().equals(userEntity.getUserName())){
 //
 //        }
 
-        if (maps.get(userEntity.getUserName()) != null) {
+        if (s != null) {
             //把json转成对应的Object对象
-            UserEntity entity = JSON.parseObject(maps.get(userEntity.getUserName()).toString(), UserEntity.class);
+            UserEntity entity = JSON.parseObject(s, UserEntity.class);
             if (entity.getPassWord().equals(userEntity.getPassWord())) {
                 return 1;
             } else {
@@ -46,6 +48,7 @@ public class UserServiceImpl implements UserService {
             }
         } else {
             if (userEntity.getPassWord().equals(u.getPassWord()) && userEntity.getUserName().equals(u.getUserName())) {
+                stringRedisTemplate.opsForValue().set(RedisKey.INFOKEY, JSON.toJSONString(u));
                 return 1;
             } else {
                 return 0;
@@ -67,6 +70,16 @@ public class UserServiceImpl implements UserService {
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public int updata(UserEntity userEntity) {
+        String channel = "update_";
+        if (userEntityMapper.updateUser(userEntity) > 0) {
+            stringRedisTemplate.convertAndSend(channel + userEntity.getUserName(), RedisKey.INFOKEY);
+            return 1;
+        }
+        return 0;
     }
 
 

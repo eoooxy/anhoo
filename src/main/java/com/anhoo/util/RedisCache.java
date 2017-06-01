@@ -2,10 +2,13 @@ package com.anhoo.util;
 
 import com.anhoo.common.BaseBean;
 import org.apache.ibatis.cache.Cache;
+import org.apache.ibatis.cache.CacheKey;
 import org.springframework.data.redis.connection.jedis.JedisConnection;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
+import java.lang.reflect.Field;
+import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -57,6 +60,7 @@ public class RedisCache extends BaseBean implements Cache {
 
     /**
      * 得到指定key的 value
+     *
      * @param key
      * @return object
      */
@@ -64,13 +68,30 @@ public class RedisCache extends BaseBean implements Cache {
     public Object getObject(Object key) {
         Object result = null;
         JedisConnection connection = null;
+//        CacheKey cacheKey = (CacheKey) key;
+//        Field field = null;
         try {
+//            //根据反射 得到Cachekey中的updateList 判断方法名，如果包含方法名字包含 update字眼的，那么删掉缓存key,直接让从数据库中读取
+//            field = cacheKey.getClass().getDeclaredField("updateList");
+//            field.setAccessible(true);
+//            List<Object> list = (List<Object>) field.get(cacheKey);
+//            String[] array = ( list.get(0).toString()).split("\\.");
+//            String methodName = array[array.length-1];
+//            //判断方法名字 是否带有update 如果带有 强制让他从数据库中取
+//            if (methodName.contains("update")) {
+//                connection.del(SerializeUtil.serialize(key));
+//                return result;
+//            }
             connection = (JedisConnection) jedisConnectionFactory.getConnection();
             result = SerializeUtil.unserialize(connection.get(SerializeUtil.serialize(key)));
 //            result = SerializeUtil.unserialize(connection.hGet(RedisCache.this.id.toString().getBytes(),
 //                    key.toString().getBytes()));
         } catch (JedisConnectionException e) {
             e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
         } finally {
             if (connection != null) {
                 connection.close();
@@ -81,6 +102,7 @@ public class RedisCache extends BaseBean implements Cache {
 
     /**
      * 得到当前db的key值
+     *
      * @return int
      */
     @Override
@@ -103,6 +125,7 @@ public class RedisCache extends BaseBean implements Cache {
 
     /**
      * 写入 key-value
+     *
      * @param key
      * @param value
      */
@@ -110,12 +133,8 @@ public class RedisCache extends BaseBean implements Cache {
     public void putObject(Object key, Object value) {
         JedisConnection connection = null;
         try {
-            logger.debug("------------------Redis Put Object:" + key.toString() + ":"
-                    + value.toString() + "-------------------");
             connection = (JedisConnection) jedisConnectionFactory.getConnection();
             connection.set(SerializeUtil.serialize(key), SerializeUtil.serialize(value));
-//            connection.hSet(RedisCache.this.id.toString().getBytes(),key.toString().getBytes(),
-//                    SerializeUtil.serialize(value));
         } catch (JedisConnectionException e) {
             e.printStackTrace();
         } finally {
@@ -127,6 +146,7 @@ public class RedisCache extends BaseBean implements Cache {
 
     /**
      * 删除指定key的值
+     *
      * @param key
      * @return
      */
@@ -156,6 +176,7 @@ public class RedisCache extends BaseBean implements Cache {
 
     /**
      * 注入jedisConnectionFactory
+     *
      * @param jedisConnectionFactory
      */
     public static void setJedisConnectionFactory(JedisConnectionFactory jedisConnectionFactory) {

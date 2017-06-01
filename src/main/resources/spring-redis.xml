@@ -54,13 +54,17 @@
         <property name="connectionFactory" ref="jedisConnFactory"/>
         <property name="messageListeners">
             <map>
-                <entry key-ref="msgListener" value-ref="patternTopic"/>
+                <entry key-ref="msgListener" value-ref="patternTopic_c"/>
+                <entry key-ref="msgListener" value-ref="patternTopic_u"/>
             </map>
         </property>
     </bean>
 
-    <bean id="patternTopic" class="org.springframework.data.redis.listener.PatternTopic">
+    <bean id="patternTopic_c" class="org.springframework.data.redis.listener.PatternTopic">
         <constructor-arg value="chat_*"/>
     </bean>
-
+    <!--订阅 数据库数据变更时吗，删除缓存key-->
+    <bean id="patternTopic_u" class="org.springframework.data.redis.listener.PatternTopic">
+        <constructor-arg value="update_*"/>
+    </bean>
 </beans>
