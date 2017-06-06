@@ -25,7 +25,6 @@ public class SubServiceImpl implements SubService {
 
     @Autowired
     StringRedisTemplate stringRedisTemplate;
-
     @Autowired
     JedisConnectionFactory jedisConnFactory;
 
@@ -37,14 +36,12 @@ public class SubServiceImpl implements SubService {
         messageEntity.setUser(stringRedisTemplate.getStringSerializer().deserialize(message.getChannel()).split("_")[1]);
         messageEntity.setContent(stringRedisTemplate.getValueSerializer().deserialize(message.getBody()).toString());
         stringRedisTemplate.opsForList().leftPush("msgList", JSON.toJSONString(messageEntity));
-
 //        Jedis jedis = (Jedis) jedisConnFactory.getConnection().getNativeConnection();
 //        stringRedisTemplate.opsForValue().set("broadcast",jedis.pubsubNumPat().toString() );
 //        System.out.println(jedis.pubsubNumPat().toString());
 //        jedis.close();
 
     }
-
     @Override
     public MessageEntity callBack(String user) throws InterruptedException {
 

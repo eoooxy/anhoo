@@ -5,36 +5,35 @@
 
 
     <!--redis哨兵 -->
-    <!--<bean id="redisSentinelConfiguration"-->
-    <!--class="org.springframework.data.redis.connection.RedisSentinelConfiguration">-->
-    <!--<property name="master">-->
-    <!--<bean class="org.springframework.data.redis.connection.RedisNode">-->
-    <!--<property name="name" value="mymaster"/>-->
-    <!--</bean>-->
-    <!--</property>-->
-    <!--<property name="sentinels">-->
-    <!--<set>-->
-    <!--<bean class="org.springframework.data.redis.connection.RedisNode">-->
-    <!--<constructor-arg index="0" value="${redis.host.slave}"/>-->
-    <!--<constructor-arg index="1" value="${slave.port}"/>-->
-    <!--</bean>-->
-    <!--<bean class="org.springframework.data.redis.connection.RedisNode">-->
-    <!--<constructor-arg index="0" value="${redis.host.master}"/>-->
-    <!--<constructor-arg index="1" value="${master.port}"/>-->
-    <!--</bean>-->
-    <!--</set>-->
-    <!--</property>-->
-    <!--</bean>-->
+    <bean id="redisSentinelConfiguration"
+          class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
+        <property name="master">
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+                <property name="name" value="mymaster"/>
+            </bean>
+        </property>
+        <property name="sentinels">
+            <set>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="${redis.host.sentinel1}"/>
+                    <constructor-arg name="port" value="${sentinel.port}"/>
+                </bean>
+                <!--<bean class="org.springframework.data.redis.connection.RedisNode">-->
+                    <!--<constructor-arg name="host" value="${redis.host.sentinel2}"/>-->
+                    <!--<constructor-arg name="port" value="${sentinel.port}"/>-->
+                <!--</bean>-->
+            </set>
+        </property>
+    </bean>
 
     <bean id="jedisConnFactory"
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-        <property name="hostName" value="${redis.host}"/>
-        <property name="port" value="${redis.port}"/>
-        <property name="password" value="${redis.password}"/>
-        <property name="usePool" value="false"/>
+        <!--<property name="hostName" value="${redis.host}"/>-->
+        <!--<property name="port" value="${redis.port}"/>-->
+        <!--<property name="password" value="${redis.password}"/>-->
+        <!--<property name="usePool" value="false"/>-->
         <!--<property name="poolConfig" ref="poolConfig"/>-->
-        <!--<constructor-arg ref="redisSentinelConfiguration"/>-->
-        <property name="timeout" value="10000"/>
+        <constructor-arg name="sentinelConfig" ref="redisSentinelConfiguration"/>
     </bean>
 
     <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
@@ -49,14 +48,14 @@
 
     <!--chat-->
     <bean id="msgListener_c" class="com.anhoo.util.MyMsgListener"/>
-    <!--<bean id="msgListener_u" class="com.anhoo.util.MyMsgListener"/>-->
+    <bean id="msgListener_u" class="com.anhoo.util.MyMsgListener"/>
 
     <bean id="listenerContainer" class="org.springframework.data.redis.listener.RedisMessageListenerContainer">
         <property name="connectionFactory" ref="jedisConnFactory"/>
         <property name="messageListeners">
             <map>
                 <entry key-ref="msgListener_c" value-ref="patternTopic_c"/>
-                <!--<entry key-ref="msgListener_u" value-ref="patternTopic_u"/>-->
+                <entry key-ref="msgListener_u" value-ref="patternTopic_u"/>
             </map>
         </property>
     </bean>
@@ -68,8 +67,5 @@
     <bean id="patternTopic_c" class="org.springframework.data.redis.listener.PatternTopic">
         <constructor-arg value="chat_*"/>
     </bean>
-
-
-
 
 </beans>

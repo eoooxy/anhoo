@@ -294,4 +294,13 @@ public class RedisString {
     public void luanma(){
         System.out.println("私钥加密 公钥解密");
     }
+
+    @Test
+    public void test() {
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-redis.xml");
+        StringRedisTemplate template = ctx.getBean(StringRedisTemplate.class);
+        template.opsForValue().set("b", "b");
+        System.out.println(template.opsForValue().get("a"));
+    }
+
 }

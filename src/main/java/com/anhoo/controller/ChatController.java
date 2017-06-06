@@ -29,10 +29,8 @@ public class ChatController {
 
     @Autowired
     PubService pubService;
-
     @Autowired
     SubService subService;
-
     @Autowired
     ChatService chatService;
 
